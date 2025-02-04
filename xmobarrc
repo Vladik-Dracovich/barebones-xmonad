@@ -1,0 +1,16 @@
+Config {
+       font = "Hack 10",
+       lowerOnStart = False,
+       position = TopW L 96,
+       commands = [
+                Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10,
+                Run Memory ["-t","Mem: <usedratio>%"] 10,
+                Run Swap [] 10,
+                Run Com "uname" ["-n","-r"] "" 36000,
+                Run Date "%a %b %_d %Y %H:%M:%S" "date" 10,
+                Run StdinReader
+                ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " %StdinReader% }{ | %cpu% | %memory% * %swap% | <fc=#690fad>%date%</fc> | %uname% |"
+       }
