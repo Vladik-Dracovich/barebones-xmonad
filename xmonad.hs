@@ -5,6 +5,8 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Gaps
 import XMonad.Layout.ThreeColumns
+import XMonad.Layout.Grid
+import XMonad.Layout.Spiral
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.SpawnOnce
 import XMonad.Util.EZConfig(additionalKeysP)
@@ -19,7 +21,7 @@ myFocusedBorderColor = "#690fad"
 
 
 
-myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol
+myLayout = tiled ||| Mirror tiled ||| Full ||| threeCol ||| GridRatio (4/3) ||| spiral (6/7)
   where
     threeCol = ThreeColMid nmaster delta ratio
     tiled    = Tall nmaster delta ratio
@@ -37,7 +39,7 @@ myStartupHook = do
   spawnOnce "blueman-applet &"
   spawnOnce "trayer --edge top --align right --SetDockType true \
             \--SetPartialStrut true  --expand true --width 4 \
-            \--transparent false --tint 0x000000 --height 16"
+            \--transparent false --tint 0x000000 --alpha 0 --height 17"
 
      
 main = do
@@ -79,10 +81,6 @@ main = do
 --MODKEY + , or . = Switch windows between horizonal and vertical
 --MODKEY + SHIFT + c = close focused window
 --MODKEY + 1-9 = switch workspace
-
-
-
-
 
 
 myKeys =           --Spawn Programs
